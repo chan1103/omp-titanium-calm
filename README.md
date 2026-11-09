@@ -2,7 +2,7 @@
 
 [omp](https://github.com/can1357/oh-my-pi) 내장 **titanium** 테마를 그대로 복제하고, 색 몇 개만 눈이 편하도록 바꾼 테마입니다. 티타늄의 상징인 전기 파랑은 그대로 두고, omp 18.18부터 기본으로 켜진 *Colorful Markdown* 기능이 답변 곳곳에 칠하는 **네온 보라(굵은 글씨)·형광 초록(인라인 코드)** 을 차분한 색으로 바꿨습니다. ✓ 성공 표시·명령어 이름 등에 쓰이던 형광 초록도 함께 낮췄습니다.
 
-![변경 전 / 후](screenshots/before-after.png)
+![변경 전 / 후](screenshots/before-after-ko.png)
 
 ## 설치 (3단계)
 
