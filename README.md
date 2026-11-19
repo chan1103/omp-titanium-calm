@@ -12,7 +12,7 @@
 2. omp 설정 → **Appearance → Dark Theme** 에서 `titanium-calm` 을 고릅니다.
 3. **Appearance → Display → Colorful Markdown** 이 켜져 있는지 확인합니다 (18.18부터 기본 켬).
 
-끝입니다. 그 외에는 아무것도 바뀌지 않습니다. 티타늄 전체를 복제한 파일이라 단독으로 동작하고, omp가 업데이트돼도 그대로 유지됩니다 (대신 내장 티타늄이 나중에 바뀌어도 따라가지는 않습니다).
+끝입니다. 그 외에는 아무것도 바뀌지 않습니다. 티타늄 전체를 복제한 파일이라 단독으로 동작합니다 (대신 내장 티타늄이 나중에 바뀌어도 따라가지는 않습니다). 단, omp가 테마의 필수 색 항목을 새로 추가하면 이 파일도 그 항목을 채워야 합니다 — 아래 [omp 업데이트 후 색이 갑자기 바뀌었다면](#omp-업데이트-후-색이-갑자기-바뀌었다면) 참고.
 
 ## 무엇이 바뀌나
 
@@ -42,6 +42,14 @@ OKLCH(사람 눈 기준으로 밝기·채도·색상을 나타내는 색 체계)
 
 omp의 `defaults.json`(또는 자기 테마 파일)에서 테마 JSON을 복사한 뒤 `terminal.ansi` 의 **2번**(인라인 코드)·**3번**(H2·표 머리글)·**4번**(H3 이하)·**5번**(굵게·기울임·H1) 칸을 같은 원칙으로 바꾸면 됩니다 — 밝기는 본문에, 채도는 강조색의 절반으로. 성공·추가 줄·문법 강조에 형광 초록 하나를 돌려 쓰는 테마라면 `vars` 에서 그 변수를 찾아 한 번만 낮추세요.
 
+## omp 업데이트 후 색이 갑자기 바뀌었다면
+
+omp는 커스텀 테마 파일에 필수 색 항목이 하나라도 빠져 있으면 테마 전체를 거부하고 내장 `dark` 테마로 대체합니다. 화면에는 아무 경고도 뜨지 않아서, 업데이트 직후 색이 이유 없이 알록달록해진 것처럼 보입니다.
+
+omp **19.0.0** 이 필수 항목 `btwMode`(`/btw` 곁질문을 입력할 때의 입력창 테두리 색)를 추가하면서, 그 전에 받은 `titanium-calm.json` 이 여기에 해당하게 됐습니다. 이 저장소의 최신 파일로 덮어쓰고 omp를 다시 실행하면 돌아옵니다. `btwMode` 는 내장 티타늄과 같은 전기 파랑(`#00b4ff`)이라 "무엇이 바뀌나" 표에는 변화가 없습니다.
+
+같은 일이 또 생기면 로그를 확인하세요 — 19.0.0에서는 `~/.omp/logs/` 의 당일 로그에 `Invalid theme` 과 빠진 항목 이름이 남았습니다.
+
 ## 출처 / 라이선스
 
 [can1357/oh-my-pi](https://github.com/can1357/oh-my-pi)의 `titanium` 테마(MIT)에서 파생했습니다. 이 저장소도 MIT입니다 — [LICENSE](LICENSE) 참고.
@@ -55,3 +63,5 @@ A drop-in variant of omp's built-in **titanium** theme. It keeps the electric-bl
 Install: copy `themes/titanium-calm.json` to `~/.omp/agent/themes/`, pick `titanium-calm` under Settings → Appearance → Dark Theme, keep Colorful Markdown on.
 
 Rule used (OKLCH): emphasis lightness ≈ body text (L ≈ 0.84), chroma ≤ half of the accent's (0.16), so the hierarchy reads blue structure › gold emphasis › mint code › prose. To port to another theme, retune `terminal.ansi` slots 2 (code), 3 (H2/table header), 4 (H3+) and 5 (bold/italic/H1) the same way.
+
+After an omp update: omp 19.0.0 added a required theme token, `btwMode` (the editor border while typing a `/btw` side question). A custom theme missing any required token is rejected whole and omp silently falls back to the built-in `dark` theme, so copies of this file downloaded before that release suddenly look neon after updating. Re-download `themes/titanium-calm.json` and restart omp; `btwMode` is the same electric blue `#00b4ff` as built-in titanium.
